@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnityInputProvider : Singleton<UnityInputProvider>, IInputProvider
+public class UnityInputProvider : IInputProvider
 {
     public Vector3 GetRotate()
     {

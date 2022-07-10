@@ -285,6 +285,9 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="Zenject-usage">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll</HintPath>
+ </Reference>
  <Reference Include="Mono.CecilX.Rocks">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
  </Reference>
@@ -293,6 +296,9 @@
  </Reference>
  <Reference Include="Mono.CecilX.Pdb">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Plastic.Antlr3.Runtime">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Library/PackageCache/com.unity.collab-proxy@1.15.1/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
@@ -303,14 +309,23 @@
  <Reference Include="Mono.CecilX">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
  </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+ </Reference>
  <Reference Include="log4netPlastic">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Library/PackageCache/com.unity.collab-proxy@1.15.1/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="Mono.CecilX.Mdb">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>

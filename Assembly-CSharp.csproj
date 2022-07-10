@@ -53,15 +53,16 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Singleton.cs" />
-     <Compile Include="Assets\Scripts\HitManager.cs" />
-     <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\SceneScript.cs" />
-     <Compile Include="Assets\Scripts\IInputProvider.cs" />
      <Compile Include="Assets\Scripts\MazePlayer.cs" />
      <Compile Include="Assets\Scripts\MazeManager.cs" />
-     <Compile Include="Assets\Scripts\UnityInputProvider.cs" />
-     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
+     <Compile Include="Assets\Scripts\UnityInputProvider.cs" />
+     <Compile Include="Assets\Scripts\HitManager.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\PlayerScript.cs" />
+     <Compile Include="Assets\Scripts\IInputProvider.cs" />
+     <Compile Include="Assets\Scripts\Container.cs" />
      <None Include="Assets\ScriptTemplates\51-Mirror__Network Authenticator-NewNetworkAuthenticator.cs.txt" />
      <None Include="Assets\ScriptTemplates\56-Mirror__Network Discovery-NewNetworkDiscovery.cs.txt" />
      <None Include="Assets\Mirror\Version.txt" />
@@ -296,20 +297,35 @@
  <Reference Include="UnityEditor.UnityConnectModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
  </Reference>
+ <Reference Include="Zenject-usage">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll</HintPath>
+ </Reference>
  <Reference Include="Mono.CecilX.Rocks">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
  </Reference>
  <Reference Include="Mono.CecilX.Pdb">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
  </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+ </Reference>
  <Reference Include="Mono.CecilX">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="Mono.CecilX.Mdb">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -671,9 +687,6 @@
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
@@ -686,12 +699,11 @@
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.Timeline.Editor">
+ <HintPath>C:/Users/tanigawa_toma/Documents/Imacreate/Maze/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{afd2c501-98ad-0d30-1a25-4b65b4faaef5}</Project>
-      <Name>UniRx</Name>
-    </ProjectReference>
     <ProjectReference Include="Mirror.csproj">
       <Project>{f4acab14-8d26-d7e2-228a-f2448bde7d29}</Project>
       <Name>Mirror</Name>
@@ -700,13 +712,33 @@
       <Project>{cde8863c-b141-4c4e-45c5-ddfdae6ecf7a}</Project>
       <Name>kcp2k</Name>
     </ProjectReference>
+    <ProjectReference Include="Mirror.Examples.csproj">
+      <Project>{bc13dff6-f65d-e384-620d-ffb5290097ea}</Project>
+      <Name>Mirror.Examples</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.DOTween.csproj">
+      <Project>{c737d29f-1cf3-3a48-e3a5-788aaa997136}</Project>
+      <Name>UniTask.DOTween</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.Linq.csproj">
+      <Project>{48eacdb5-1a03-5f70-eb43-7f3817b73e6e}</Project>
+      <Name>UniTask.Linq</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{afd2c501-98ad-0d30-1a25-4b65b4faaef5}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.TextMeshPro.csproj">
+      <Project>{93708109-bad4-fc6c-11f7-56b922fde3e6}</Project>
+      <Name>UniTask.TextMeshPro</Name>
+    </ProjectReference>
     <ProjectReference Include="Mirror.Editor.csproj">
       <Project>{4671f7be-0db6-858f-1881-6d77327a47fb}</Project>
       <Name>Mirror.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Mirror.Examples.csproj">
-      <Project>{bc13dff6-f65d-e384-620d-ffb5290097ea}</Project>
-      <Name>Mirror.Examples</Name>
+    <ProjectReference Include="MessagePipe.csproj">
+      <Project>{a681ce21-fb9f-8302-74b3-750f40af9c1d}</Project>
+      <Name>MessagePipe</Name>
     </ProjectReference>
     <ProjectReference Include="Mirror.CompilerSymbols.csproj">
       <Project>{fcae6f6e-61ea-31cc-1d18-4497f21dfc25}</Project>
@@ -724,13 +756,37 @@
       <Project>{32ad12e2-300c-3d97-e5c6-7fef0ed03a33}</Project>
       <Name>where-allocations</Name>
     </ProjectReference>
+    <ProjectReference Include="UniTask.csproj">
+      <Project>{99599cef-fe8a-438f-ee80-25811795c971}</Project>
+      <Name>UniTask</Name>
+    </ProjectReference>
     <ProjectReference Include="SimpleWebTransport.csproj">
       <Project>{3d963d53-a48c-cd7a-169f-4f4f45deb93e}</Project>
       <Name>SimpleWebTransport</Name>
     </ProjectReference>
+    <ProjectReference Include="UniTask.Addressables.csproj">
+      <Project>{271cb731-1492-dd74-ea5c-934fa3c427d9}</Project>
+      <Name>UniTask.Addressables</Name>
+    </ProjectReference>
     <ProjectReference Include="Mirror.Components.csproj">
       <Project>{89a6ab0d-2e40-44dc-76a7-d9b645974a89}</Project>
       <Name>Mirror.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-Editor.csproj">
+      <Project>{42106660-5199-90d2-d2c1-3afe62673e0f}</Project>
+      <Name>Zenject-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{fa26aae2-5104-f953-ebc0-729a47e81a5c}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
+      <Project>{9a92ab33-6eba-7250-8d01-e24ff6882025}</Project>
+      <Name>Zenject-ReflectionBaking-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject.csproj">
+      <Project>{6708ca3e-dca6-3a35-74d6-71d8ec25e22c}</Project>
+      <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

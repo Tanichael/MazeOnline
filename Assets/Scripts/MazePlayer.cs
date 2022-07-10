@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using Zenject;
 using UniRx;
 using UniRx.Triggers;
 
@@ -17,19 +18,29 @@ public class MazePlayer : NetworkBehaviour
     private bool _isShooting;
     private float _lapseTime = 0f;
     private readonly float _coolTime = 1f;
-    private Vector3 _shootDirection;
+    private readonly float _hitPoint = 100f;
+    
+    [SyncVar]
+    private int _connId;
     
     public override void OnStartLocalPlayer()
     {
         //InputProviderの設定
-        _inputProvider = UnityInputProvider.Instance;
-        
+        _inputProvider = new UnityInputProvider();
+
         //Cameraの設定
         Camera.main.transform.SetParent(transform);
         Camera.main.transform.localPosition = new Vector3(0, 0, 0);
         transform.LookAt(new Vector3(0f, 1f, 0f));
-        _shootDirection = Vector3.Normalize(_launchPosition.transform.position - gameObject.transform.position);
+        
+        CmdSetUpPlayer();
 
+        Container.Instance.OnBulletHit.Subscribe(bulletHitMessage =>
+        {
+            Debug.Log("Shooter: " + bulletHitMessage.Shooter);
+            Debug.Log("Shot: " + bulletHitMessage.Shot);
+            Debug.Log("Damage: " + bulletHitMessage.Damage);
+        });
     }
 
     void Update()
@@ -52,7 +63,6 @@ public class MazePlayer : NetworkBehaviour
             {
                 _isShooting = true;
                 _lapseTime = 0f;
-                _shootDirection = Vector3.Normalize(_launchPosition.transform.position - gameObject.transform.position);
                 CmdShoot();
             }
         }
@@ -67,14 +77,32 @@ public class MazePlayer : NetworkBehaviour
             }
         }
     }
+
+    [Command]
+    void CmdSetUpPlayer()
+    {
+        //コネクションを記録
+        _connId = connectionToClient.connectionId;
+        Debug.Log("ID: " + _connId);
+    }
     
     [Command]
     void CmdShoot()
     {
+        RpcShoot();
+    }
+
+    [ClientRpc]
+    void RpcShoot()
+    {
         Bullet bullet = Instantiate(_bullet, _launchPosition.transform);
         bullet.gameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
         NetworkServer.Spawn(bullet.gameObject);
-        bullet.Shoot(_shootDirection);
+        bullet.transform.SetParent(null);
+        
+        Vector3 shootDirection = Vector3.Normalize(_launchPosition.transform.position - gameObject.transform.position);
+        
+        bullet.Shoot(_connId, shootDirection);
     }
     
     
