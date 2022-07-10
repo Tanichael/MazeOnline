@@ -720,9 +720,17 @@
       <Project>{c737d29f-1cf3-3a48-e3a5-788aaa997136}</Project>
       <Name>UniTask.DOTween</Name>
     </ProjectReference>
+    <ProjectReference Include="Zenject-Editor.csproj">
+      <Project>{42106660-5199-90d2-d2c1-3afe62673e0f}</Project>
+      <Name>Zenject-Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UniTask.Linq.csproj">
       <Project>{48eacdb5-1a03-5f70-eb43-7f3817b73e6e}</Project>
       <Name>UniTask.Linq</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{fa26aae2-5104-f953-ebc0-729a47e81a5c}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="UniRx.csproj">
       <Project>{afd2c501-98ad-0d30-1a25-4b65b4faaef5}</Project>
@@ -731,6 +739,14 @@
     <ProjectReference Include="UniTask.TextMeshPro.csproj">
       <Project>{93708109-bad4-fc6c-11f7-56b922fde3e6}</Project>
       <Name>UniTask.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
+      <Project>{9a92ab33-6eba-7250-8d01-e24ff6882025}</Project>
+      <Name>Zenject-ReflectionBaking-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject.csproj">
+      <Project>{6708ca3e-dca6-3a35-74d6-71d8ec25e22c}</Project>
+      <Name>Zenject</Name>
     </ProjectReference>
     <ProjectReference Include="Mirror.Editor.csproj">
       <Project>{4671f7be-0db6-858f-1881-6d77327a47fb}</Project>
@@ -771,22 +787,6 @@
     <ProjectReference Include="Mirror.Components.csproj">
       <Project>{89a6ab0d-2e40-44dc-76a7-d9b645974a89}</Project>
       <Name>Mirror.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject-Editor.csproj">
-      <Project>{42106660-5199-90d2-d2c1-3afe62673e0f}</Project>
-      <Name>Zenject-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
-      <Project>{fa26aae2-5104-f953-ebc0-729a47e81a5c}</Project>
-      <Name>Zenject-PoolMonitor-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
-      <Project>{9a92ab33-6eba-7250-8d01-e24ff6882025}</Project>
-      <Name>Zenject-ReflectionBaking-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject.csproj">
-      <Project>{6708ca3e-dca6-3a35-74d6-71d8ec25e22c}</Project>
-      <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

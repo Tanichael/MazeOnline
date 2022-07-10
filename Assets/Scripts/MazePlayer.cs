@@ -10,7 +10,7 @@ public class MazePlayer : NetworkBehaviour
 {
     [SerializeField] private HitManager _hitManager; //余裕あればZenject
     [SerializeField] private GameObject _launchPosition;
-    [SerializeField] private Bullet _bullet;
+    [SerializeField] private GameObject _bullet;
     
     private IInputProvider _inputProvider;
     
@@ -95,13 +95,13 @@ public class MazePlayer : NetworkBehaviour
     [ClientRpc]
     void RpcShoot()
     {
-        Bullet bullet = Instantiate(_bullet, _launchPosition.transform);
-        bullet.gameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
-        NetworkServer.Spawn(bullet.gameObject);
-        bullet.transform.SetParent(null);
+        GameObject bulletObject = Instantiate(_bullet, _launchPosition.transform);
+        bulletObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+        NetworkServer.Spawn(bulletObject);
+        bulletObject.transform.SetParent(null);
         
         Vector3 shootDirection = Vector3.Normalize(_launchPosition.transform.position - gameObject.transform.position);
-        
+        Bullet bullet = bulletObject.GetComponent<Bullet>();
         bullet.Shoot(_connId, shootDirection);
     }
     
